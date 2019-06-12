@@ -1,0 +1,8 @@
+Jenny Kate 12 9 Paid Other
+Many Pacoua 120 19 Paid Cash
+Lee Jenny 123 10 Not_Paid No_Payment
+Bean Simon 123 17 Not_Paid No_Payment
+Hanna Motana 1 13 Not_Paid No_Payment
+James Boko 1234 8 Not_Paid No_Payment
+hastle danny 123 23 Not_Paid No_Payment
+Abdul Wahid 2344 1 Not_Paid No_Payment
