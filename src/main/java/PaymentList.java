@@ -74,7 +74,7 @@ public class PaymentList {
 			String paymentSta, String type, boolean writeData) {
 		FileWriter writer;
 		try {
-			File tenantDetails = new File("PaymentList.txt");
+			File tenantDetails = new File(FILE_PATH_NAME);
 			// creates a new file
 			tenantDetails.createNewFile();
 
@@ -118,7 +118,7 @@ public class PaymentList {
 
 		FileWriter writer;
 		try {
-			File tenantDetails = new File("PaymentList.txt");
+			File tenantDetails = new File(FILE_PATH_NAME);
 			// creates a new file
 			tenantDetails.createNewFile();
 

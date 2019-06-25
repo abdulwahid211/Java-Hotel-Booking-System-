@@ -70,7 +70,7 @@ public class Booking {
 
 		FileWriter writer;
 		try {
-			File roomDetails = new File("BookingData.txt");
+			File roomDetails = new File(FILE_PATH_NAME);
 			// creates a new file
 			roomDetails.createNewFile();
 
