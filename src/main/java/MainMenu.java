@@ -34,12 +34,12 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 	// and perform certain actions
 	private Management ManagementPage; // management object for the utility
 	private AddTenant addTenantButton; // addTenant object to add tenanrs
-	private showAllRooms showAllrooms; // to display all room tables
-	private RemoveTenant removeTenantPage; // container to remove tenant
-	private MakeAPayment makeAPayment; // to make an payment
-	private SearchTenant searchTenant; // search tenant
-	private showAllTenants showAlltenants; // to display all all tenants
-	private showAllPayments showPaymentsPage; // show all payments
+//	private showAllRooms showAllrooms; // to display all room tables
+//	private RemoveTenant removeTenantPage; // container to remove tenant
+//	private MakeAPayment makeAPayment; // to make an payment
+//	private SearchTenant searchTenant; // search tenant
+//	private showAllTenants showAlltenants; // to display all all tenants
+//	private showAllPayments showPaymentsPage; // show all payments
 
 	private JPanel switchPanels; // a panel that uses CardLayout
 	// main buttons for the main menu
@@ -72,13 +72,13 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 
 		// instantiate all instance object
 		addTenantButton = new AddTenant();
-		showPaymentsPage = new showAllPayments();
-		removeTenantPage = new RemoveTenant();
-		makeAPayment = new MakeAPayment();
+//		showPaymentsPage = new showAllPayments();
+//		removeTenantPage = new RemoveTenant();
+//		makeAPayment = new MakeAPayment();
 		ManagementPage = new Management();
-		searchTenant = new SearchTenant();
-		showAllrooms = new showAllRooms();
-		showAlltenants = new showAllTenants();
+//		searchTenant = new SearchTenant();
+//		showAllrooms = new showAllRooms();
+//		showAlltenants = new showAllTenants();
 		// instantiate main Jpanel container
 		menu = new JPanel();
 
@@ -129,13 +129,13 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 		// each layout represent individual pages
 		switchPanels.add(menu, "returnMenu");
 		switchPanels.add(ManagementPage.Container(this), "managementPage");
-		switchPanels.add(makeAPayment.Container(this), "makeAPayment");
-		switchPanels.add(showAllrooms.Container(this), "showAllrooms");
-		switchPanels.add(showAlltenants.Container(this), "showAlltenants");
-		switchPanels.add(showPaymentsPage.Container(this), "showPaymentsPage");
+//		switchPanels.add(makeAPayment.Container(this), "makeAPayment");
+//		switchPanels.add(showAllrooms.Container(this), "showAllrooms");
+//		switchPanels.add(showAlltenants.Container(this), "showAlltenants");
+//		switchPanels.add(showPaymentsPage.Container(this), "showPaymentsPage");
 		switchPanels.add(addTenantButton.Container(this), "addTenantPage");
-		switchPanels.add(removeTenantPage.Container(this), "removeTenantPage");
-		switchPanels.add(searchTenant.Container(this), "searchTenant");
+//		switchPanels.add(removeTenantPage.Container(this), "removeTenantPage");
+//		switchPanels.add(searchTenant.Container(this), "searchTenant");
 		add(switchPanels); // finally add the main Jpanel to the Jframe
 	}
 
@@ -199,43 +199,43 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 
 		// }
 		// button for to leave the remove tenant page
-		if (e.getSource() == removeTenantPage.getGoBackButton()) {
-			changePages.show(switchPanels, "managementPage");
-			setSize(550, 520);// size for manangement page
-		}
-		// button for to leave the payment page
-		if (e.getSource() == makeAPayment.getGoBackButton()) {
-			changePages.show(switchPanels, "managementPage");
-
-			setSize(550, 520);// size for manangement page
-		}
-		// button for remove tenant
-		if (e.getSource() == removeTenantPage.getRemoveTennantButton()) {
-			// exception handling to avoid any errors
-			try {
-				removeTenantPage.remove(); // once the has user pressed remove
-											// tenant
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			setSize(550, 550); // set size for the remove tenants page
-		}
-		// button to refresh remove tenant page
-		if (e.getSource() == removeTenantPage.getRefreshButton()) {
-			// exception handling to avoid any errors
-			try {
-				removeTenantPage.refresh();// once the has user pressed it will
-											// refresh tenant
-				;
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			setSize(550, 550); // set size for the remove tenants page
-		}
+//		if (e.getSource() == removeTenantPage.getGoBackButton()) {
+//			changePages.show(switchPanels, "managementPage");
+//			setSize(550, 520);// size for manangement page
+//		}
+//		// button for to leave the payment page
+//		if (e.getSource() == makeAPayment.getGoBackButton()) {
+//			changePages.show(switchPanels, "managementPage");
+//
+//			setSize(550, 520);// size for manangement page
+//		}
+//		// button for remove tenant
+//		if (e.getSource() == removeTenantPage.getRemoveTennantButton()) {
+//			// exception handling to avoid any errors
+//			try {
+//				removeTenantPage.remove(); // once the has user pressed remove
+//											// tenant
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//
+//			setSize(550, 550); // set size for the remove tenants page
+//		}
+//		// button to refresh remove tenant page
+//		if (e.getSource() == removeTenantPage.getRefreshButton()) {
+//			// exception handling to avoid any errors
+//			try {
+//				removeTenantPage.refresh();// once the has user pressed it will
+//											// refresh tenant
+//				;
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//
+//			setSize(550, 550); // set size for the remove tenants page
+//		}
 		// button to back to the management page
 		if (e.getSource() == addTenantButton.getGoBackButton()) {
 			changePages.show(switchPanels, "managementPage");
@@ -276,138 +276,138 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 
 		}
 		// button to go back to search tenant
-		if (e.getSource() == searchTenant.getGoBackButton()) {
-
-			// setSize(350, 330); // set size for page
-			changePages.show(switchPanels, "managementPage");
-			setSize(550, 520);// size for manangement page
-		}
-		// button to that particular search tenant
-		if (e.getSource() == searchTenant.getSearchButton()) {
-
-			setSize(450, 600); // set size for the search tenants page
-			try {
-				searchTenant.searchRequest();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-		}
-		// find tenant who wants to pay
-		if (e.getSource() == makeAPayment.getSearchButton()) {
-
-			setSize(550, 730); // set size for page
-			try {
-				makeAPayment.searchRequest();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setSize(550, 650); // set size for the payment page
-		}
-
-		// JCheckBox button to select cash type in the make a payment page
-		if (e.getSource() == makeAPayment.getCash()) {
-			// deselect everything else
-			makeAPayment.getCard().setSelected(false);
-			makeAPayment.getCheque().setSelected(false);
-			makeAPayment.getOther().setSelected(false);
-			setSize(550, 650); // set size for the payment page
-
-			makeAPayment.setPayment("Cash");
-		}
-		// JCheckBox button to select card type in the make a payment page
-		if (e.getSource() == makeAPayment.getCard()) {
-			// deselect everything else
-			makeAPayment.getCash().setSelected(false);
-			makeAPayment.getCheque().setSelected(false);
-			makeAPayment.getOther().setSelected(false);
-			setSize(550, 650); // set size for the payment page
-			makeAPayment.setPayment("Card");
-		}
-		// JCheckBox button to select cheque type in the make a payment page
-		if (e.getSource() == makeAPayment.getCheque()) {
-			// deselect everything else
-			makeAPayment.getCash().setSelected(false);
-			makeAPayment.getCard().setSelected(false);
-			makeAPayment.getOther().setSelected(false);
-			setSize(550, 650); // set size for the payment page
-
-			makeAPayment.setPayment("Cheque");
-		}
-		// JCheckBox button to select other type in the make a payment page
-		if (e.getSource() == makeAPayment.getOther()) {
-			// deselect everything else
-			makeAPayment.getCash().setSelected(false);
-			makeAPayment.getCard().setSelected(false);
-			makeAPayment.getCheque().setSelected(false);
-			setSize(550, 650); // set size for the payment page
-			// set the other string
-			makeAPayment.setPayment("Other");
-		}
-		// button to make an payment
-		if (e.getSource() == makeAPayment.getTennantPayment()) {
-
-		
-			try {
-				makeAPayment.pay();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		// button to search tenant
-		if (e.getSource() == searchTenant.getTennant()) {
-			changePages.show(switchPanels, "showAlltenants");
-
-		}
-		// button to go back
-		if (e.getSource() == showAlltenants.getGoBackButton()) {
-			changePages.show(switchPanels, "searchTenant");
-			setSize(450, 600); // set size for the search tenants page
-		}
-		// button to refresh
-		if (e.getSource() == showAlltenants.getRefreshButton()) {
-			try {
-				showAlltenants.refreshPage();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		// button to go back main menu
-		if (e.getSource() == showAllrooms.getGoBackButton()) {
-			changePages.show(switchPanels, "returnMenu");
-
-		}
-		// button to refresh all room page
-		if (e.getSource() == showAllrooms.getRefreshButton()) {
-			try {
-				showAllrooms.refreshPage();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
+//		if (e.getSource() == searchTenant.getGoBackButton()) {
+//
+//			// setSize(350, 330); // set size for page
+//			changePages.show(switchPanels, "managementPage");
+//			setSize(550, 520);// size for manangement page
+//		}
+//		// button to that particular search tenant
+//		if (e.getSource() == searchTenant.getSearchButton()) {
+//
+//			setSize(450, 600); // set size for the search tenants page
+//			try {
+//				searchTenant.searchRequest();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//
+//		}
+//		// find tenant who wants to pay
+//		if (e.getSource() == makeAPayment.getSearchButton()) {
+//
+//			setSize(550, 730); // set size for page
+//			try {
+//				makeAPayment.searchRequest();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			setSize(550, 650); // set size for the payment page
+//		}
+//
+//		// JCheckBox button to select cash type in the make a payment page
+//		if (e.getSource() == makeAPayment.getCash()) {
+//			// deselect everything else
+//			makeAPayment.getCard().setSelected(false);
+//			makeAPayment.getCheque().setSelected(false);
+//			makeAPayment.getOther().setSelected(false);
+//			setSize(550, 650); // set size for the payment page
+//
+//			makeAPayment.setPayment("Cash");
+//		}
+//		// JCheckBox button to select card type in the make a payment page
+//		if (e.getSource() == makeAPayment.getCard()) {
+//			// deselect everything else
+//			makeAPayment.getCash().setSelected(false);
+//			makeAPayment.getCheque().setSelected(false);
+//			makeAPayment.getOther().setSelected(false);
+//			setSize(550, 650); // set size for the payment page
+//			makeAPayment.setPayment("Card");
+//		}
+//		// JCheckBox button to select cheque type in the make a payment page
+//		if (e.getSource() == makeAPayment.getCheque()) {
+//			// deselect everything else
+//			makeAPayment.getCash().setSelected(false);
+//			makeAPayment.getCard().setSelected(false);
+//			makeAPayment.getOther().setSelected(false);
+//			setSize(550, 650); // set size for the payment page
+//
+//			makeAPayment.setPayment("Cheque");
+//		}
+//		// JCheckBox button to select other type in the make a payment page
+//		if (e.getSource() == makeAPayment.getOther()) {
+//			// deselect everything else
+//			makeAPayment.getCash().setSelected(false);
+//			makeAPayment.getCard().setSelected(false);
+//			makeAPayment.getCheque().setSelected(false);
+//			setSize(550, 650); // set size for the payment page
+//			// set the other string
+//			makeAPayment.setPayment("Other");
+//		}
+//		// button to make an payment
+//		if (e.getSource() == makeAPayment.getTennantPayment()) {
+//
+//
+//			try {
+//				makeAPayment.pay();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
+//		// button to search tenant
+//		if (e.getSource() == searchTenant.getTennant()) {
+//			changePages.show(switchPanels, "showAlltenants");
+//
+//		}
+//		// button to go back
+//		if (e.getSource() == showAlltenants.getGoBackButton()) {
+//			changePages.show(switchPanels, "searchTenant");
+//			setSize(450, 600); // set size for the search tenants page
+//		}
+//		// button to refresh
+//		if (e.getSource() == showAlltenants.getRefreshButton()) {
+//			try {
+//				showAlltenants.refreshPage();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
+//		// button to go back main menu
+//		if (e.getSource() == showAllrooms.getGoBackButton()) {
+//			changePages.show(switchPanels, "returnMenu");
+//
+//		}
+//		// button to refresh all room page
+//		if (e.getSource() == showAllrooms.getRefreshButton()) {
+//			try {
+//				showAllrooms.refreshPage();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
 		// button to display payment list page
 		if (e.getSource() == showPaymentList) {
 			changePages.show(switchPanels, "showPaymentsPage");
 
 		}
-		// button to go back to main menu
-		if (e.getSource() == showPaymentsPage.getGoBackButton()) {
-			changePages.show(switchPanels, "returnMenu");
-		}
-		// button for refresh page
-		if (e.getSource() == showPaymentsPage.getRefreshButton()) {
-			try {
-				showPaymentsPage.refreshPage();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
+//		// button to go back to main menu
+//		if (e.getSource() == showPaymentsPage.getGoBackButton()) {
+//			changePages.show(switchPanels, "returnMenu");
+//		}
+//		// button for refresh page
+//		if (e.getSource() == showPaymentsPage.getRefreshButton()) {
+//			try {
+//				showPaymentsPage.refreshPage();
+//			} catch (FileNotFoundException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
 
 	}
 

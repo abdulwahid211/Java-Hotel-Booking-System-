@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class showAllTenants  {
-	private TenantList tenants; // tenants that retrieves list of details
 	private JScrollPane scrollBar; // scroll bar for the table
 	private JButton refresh; // refresh button for the table
 	private String col[] = { "TenantList Name", "Room number" }; // column names for
@@ -54,27 +53,12 @@ public class showAllTenants  {
 								// position
 		page.setBackground(Color.decode("#6FC9E9")); // background color 
 
-		// instantiate tenant object
-		tenants = new TenantList();
-		tenants.init(); // load up the arraylist of tenants
 
 		
 		// instantiate table object
 		tableModel = new DefaultTableModel(col, 0);
 		table = new JTable(tableModel);
-		
 
-		// iterate through the for loop to collect all relevant value to display
-		// in the table
-		for (int i = 0; i < tenants.getTenantsList().size(); i++) {
-			customerName = tenants.getTenantsList().get(i).getFirstName() + " "
-					+ tenants.getTenantsList().get(i).getLastName();
-			roomNumber = tenants.getTenantsList().get(i).getRoomNumber();
-			// using the array objects to collect
-			Object[] objs = { customerName, roomNumber };
-			// display every object in table
-			tableModel.addRow(objs);
-		}
 		// instantiate refresh button
 		refresh = new JButton("Refresh");
 		refresh.setBounds(200, 300, 200, 50);
@@ -110,22 +94,7 @@ public class showAllTenants  {
 
 	// refresh the table
 	public void refreshPage() throws FileNotFoundException {
-		removeTableContent(tableModel);
-		TenantList tenants = new TenantList();
-		String customerName;
-		int roomNumber;
-		// retrive all data from the text file and put in a arraylist
-		tenants.init();
-		// load up table again
-		for (int i = 0; i < tenants.getTenantsList().size(); i++) {
-			customerName = tenants.getTenantsList().get(i).getFirstName() + " "
-					+ tenants.getTenantsList().get(i).getLastName();
-			roomNumber = tenants.getTenantsList().get(i).getRoomNumber();
 
-			Object[] objs = { customerName, roomNumber };
-
-			tableModel.addRow(objs);
-		}
 
 	}
 

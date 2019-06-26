@@ -30,7 +30,6 @@ public class RemoveTenant {
 	private JButton removeTennant; // button to remove tenant
 	private JList listTenants; // list to hold color names
 	private JScrollPane scrollBar; // scrollBar for listTenants
-	private TenantList tenant; // to get the list tenants
 	private JLabel info; // label for info
 	private JLabel info2; // label for info
 
@@ -54,13 +53,6 @@ public class RemoveTenant {
 		page = new JPanel();
 		page.setSize(550, 600);
 		page.setLayout(null);
-		// instantiate tenant object
-		tenant = new TenantList();
-
-		tenant.init();
-		// instantiate Jlist
-		// get array list of tenants and convert into arrays to display
-		listTenants = new JList(tenant.getTenantsList().toArray());
 
 		listTenants.setVisibleRowCount(10); // show ten rows
 
@@ -114,39 +106,13 @@ public class RemoveTenant {
 	// this method removes tenants object and updates the file
 	// it also remove payment list and booking as well
 	public void remove() throws FileNotFoundException {
-		// instantiate tenant object
-		TenantList tenant = new TenantList();
-		tenant.init();
-		// instantiate payment object
-		PaymentList removePay = new PaymentList();
-		removePay.init();
-		// collect the tenant object from the Jlist selection
-		Tenant object = tenant.getTenantsList().get(
-				listTenants.getSelectedIndex());
-		// instantiate booking object
-		Booking roomBooking = new Booking();
-		roomBooking.init();
-		// remove the object in booking, payment and tenant as well
-		roomBooking.RemoveVisitorRoom(object.getRoomNumber());
-		removePay.removePaymentList(object.getRoomNumber());
-		removePay.updatePayment();
-		roomBooking.UpdateData();
 
-		// now remove that tenant object
-		tenant.removeTenant(listTenants.getSelectedIndex());
-
-		// update the Jlist again
-		listTenants.setListData(tenant.getTenantsList().toArray());
 
 	}
 
 	// refresh button to update the Jlist
 	public void refresh() throws FileNotFoundException {
-		TenantList tenant = new TenantList();
 
-		tenant.init();
-
-		listTenants.setListData(tenant.getTenantsList().toArray());
 
 	}
 

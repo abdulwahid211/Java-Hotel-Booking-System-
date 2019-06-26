@@ -43,7 +43,6 @@ public class AddTenant {
 	private JTextField firstName; // first name of tennant to enter
 	private JTextField lastName; // last name of tennant to enter
 	private JTextField roomNumber; // room number of tennant to enter
-	private JTextField noDaysBooked; // number of days the tenant wants to be
 										// book
 	private JButton Addtenants; // button for adding, and storing all data in
 								// the text files
@@ -65,7 +64,6 @@ public class AddTenant {
 	private JLabel EstimatePricelabel; // estimation price label
 	private JLabel PriceInfo; // price label
 	private JLabel tableInfo; // table label
-	private JLabel noDaysBookedlabel; // No days booked label
 	private JLabel icon; // label to display an image for the page
 
 	// drop down boxes
@@ -83,7 +81,6 @@ public class AddTenant {
 	String column_names[] = { "Room Number", "Room Status", "Visitor Name" };
 	// TableModel object to store the cell value of other objects.
 	private DefaultTableModel tableModel;
-	private TenantList tenant; // tenant object to add details of customer in text
 							// file
 	private PaymentList payment; // to add payment details in text file
 	Icon picture;
@@ -125,6 +122,9 @@ public class AddTenant {
 		return this.Addtenants;
 	}
 
+
+	private DataTransaction tennatsTransaction;
+
 	// return method of Jpanel to display interface layout in the main JFrane
 	// method has parameter to reference object for actual action listener
 	// in the mainMenu class 
@@ -138,8 +138,7 @@ public class AddTenant {
 		page.setBackground(Color.decode("#6FC9E9")); // background color
 		page.setSize(750, 1200);
 		page.setLayout(null); // set layout to null
-		// as it becomes absolute position
-		roomBooking = new Booking();
+
 		// image for add tenants page
 		icon = new JLabel(picture);
 		icon.setBounds(120, -16, 200, 100);
@@ -195,10 +194,7 @@ public class AddTenant {
 		roomNumber = new JTextField();
 		roomNumber.setBounds(146, 200, 220, 30);
 		page.add(roomNumber);
-		// No days booked label
-		noDaysBookedlabel = new JLabel("No. of Days:");
-		noDaysBookedlabel.setBounds(59, 234, 220, 30);
-		page.add(noDaysBookedlabel);
+
 		// Price info label
 		PriceInfo = new JLabel("Price Info: 1 day = £200");
 		PriceInfo.setBounds(148, 257, 220, 30);
@@ -207,10 +203,7 @@ public class AddTenant {
 		EstimatePricelabel = new JLabel("(Est. of Price)");
 		EstimatePricelabel.setBounds(50, 280, 220, 30);
 		page.add(EstimatePricelabel);
-		// instantiating Jtext field to enter No days to stay
-		noDaysBooked = new JTextField();
-		noDaysBooked.setBounds(146, 234, 150, 30);
-		page.add(noDaysBooked);
+
 		// button to add tenants
 		Addtenants = new JButton("Add TenantList");
 		Addtenants.setBounds(150, 360, 240, 50);
@@ -250,7 +243,6 @@ public class AddTenant {
 														// listener
 		// instantiating table model object
 		tableModel = new DefaultTableModel(column_names, 0);
-		tenant = new TenantList(); // Initialise tenant object
 		// table info label
 		tableInfo = new JLabel(
 				"Room Availability Table  (Please press the refresh button to see )");
@@ -258,6 +250,9 @@ public class AddTenant {
 		page.add(tableInfo);
 		// pass table model object to the actual Jtable object
 		table = new JTable(tableModel);
+
+
+		tennatsTransaction = new DataTransaction(Tenant.class);
 
 		// i decided to put all variables and object of Jtable
 		// in a method, so it allows to re initialise the file handling, if any
@@ -294,57 +289,39 @@ public class AddTenant {
 		boolean firstNameWordOnly = checkNumber(firstName.getText());
 		boolean lastNameWordOnly = checkNumber(lastName.getText());
 
-		Booking roomBooking = new Booking(); // booking object to store room
-												// number details
-		PaymentList payment = new PaymentList(); // payment object to store
-													// payment details
-		// these two fucntions retrieve all current data from file text and so
-		// it can be updated with the new one
-		roomBooking.init(); // to retrive booking room details
-		payment.init(); // to retrive payment details
-		// if the names are valid execute the procedure
-		if (firstNameWordOnly == true && lastNameWordOnly) {
+//		Booking roomBooking = new Booking(); // booking object to store room
+//												// number details
+
+
+//		PaymentList payment = new PaymentList(); // payment object to store
+//													// payment details
+
+
+
+		if (firstNameWordOnly && lastNameWordOnly) {
 			// file handling to prevent wrong input
 			try { // try method
 					// this boolean verify function prevents double booking
 					// hence user cannot book unavailable rooms
-				if (roomBooking.verify(Integer.parseInt(roomNumber.getText()))) {
+//				if (roomBooking.verify(Integer.parseInt(roomNumber.getText()))) {
+					if (true) {
 
-					// validation checks
-					// ensures every fields is greater than zero, so therefore
-					// it
-					// checks all
-					// fields has a value
-					// at least
 					if (firstName.getText().length() > 0
 							&& lastName.getText().length() > 0
-							&& roomNumber.getText().length() > 0
-							&& noDaysBooked.getText().length() > 0) {
+							&& roomNumber.getText().length() > 0) {
 						
-						// replaceAll() function for names removes all white spaces
-						// to prevent from crashing 
-						// add new details of room details
-						roomBooking.addVisitorRoom(firstName.getText().replaceAll("\\s+","") + " "
-								+  lastName.getText().replaceAll("\\s+",""),
-								Integer.parseInt(roomNumber.getText()));
-						// add new details of payment details
-						payment.addPayment(
-								 firstName.getText().replaceAll("\\s+","") + " " + 
-										 lastName.getText().replaceAll("\\s+",""),
-								Integer.parseInt(noDaysBooked.getText()),
-								Integer.parseInt(roomNumber.getText()),
-								"Not_Paid", "No_Payment", true);
 
-						roomBooking.UpdateData(); // update the new details for
-													// room booking
-						// to store in the file text
-						// add new details of tenant details
-						tenant.addTenant(titles[title.getSelectedIndex()],
-								 firstName.getText().replaceAll("\\s+",""),  lastName.getText().replaceAll("\\s+",""),
+					// Add tennat HERE!!!!!!!!!!!!
+
+						Tenant newTenant = new Tenant(titles[title.getSelectedIndex()],
+								firstName.getText().replaceAll("\\s+",""),  lastName.getText().replaceAll("\\s+",""),
 								noAdults[adults.getSelectedIndex()],
-								noMinors[minors.getSelectedIndex()],
-								Integer.parseInt(noDaysBooked.getText()),
-								Integer.parseInt(roomNumber.getText()), true);
+								noMinors[minors.getSelectedIndex()]);
+
+
+
+						tennatsTransaction.add(newTenant);
+
 
 						displayRoomTable(); // display new updated table again,
 											// with the
@@ -354,7 +331,7 @@ public class AddTenant {
 						firstName.setText("");
 						lastName.setText("");
 						roomNumber.setText("");
-						noDaysBooked.setText("");
+
 						
 						
 
@@ -386,7 +363,6 @@ public class AddTenant {
 			// catch method
 			catch (Exception nfe) { // display the error message for wrong input
 									// type
-				noDaysBooked.setText("");
 				roomNumber.setText("");
 				JOptionPane.showMessageDialog(null,
 						"Please ensure you enter a Integer!",
@@ -431,52 +407,33 @@ public class AddTenant {
 	// method to display and calculate the potential price
 	// gets called when the user presses calculate button
 	public void showPrice() {
-		// try method
-		try {
-			potentialPrice.setText("");
-			if (noDaysBooked.getText().length() > 0) {
-				double a = payment.totalCal(Integer.parseInt(noDaysBooked
-						.getText()));
-
-				potentialPrice.setText("£" + String.valueOf(a));
-			} else {
-				potentialPrice.setText("");
-			}
-			// catch method if the user does not enter integer
-		} catch (Exception e) {
-			noDaysBooked.setText("");
-			JOptionPane.showMessageDialog(null,
-					"Please ensure you enter a Integer!",
-					"Wrong input, please double check!",
-					JOptionPane.ERROR_MESSAGE);
-		}
+//		// try method
+//		try {
+//			potentialPrice.setText("");
+//			if (noDaysBooked.getText().length() > 0) {
+//				double a = payment.totalCal(Integer.parseInt(noDaysBooked
+//						.getText()));
+//
+//				potentialPrice.setText("£" + String.valueOf(a));
+//			} else {
+//				potentialPrice.setText("");
+//			}
+//			// catch method if the user does not enter integer
+//		} catch (Exception e) {
+//			noDaysBooked.setText("");
+//			JOptionPane.showMessageDialog(null,
+//					"Please ensure you enter a Integer!",
+//					"Wrong input, please double check!",
+//					JOptionPane.ERROR_MESSAGE);
+//		}
 	}
 
 	// method to display room table
 	public void displayRoomTable() throws FileNotFoundException {
-		// this is the function that removes old data in the table and then
-		// updates the new one
-		// so therefore it prevents duplicates in the table
-		removeTableContent(tableModel);
-		Booking roomBooking = new Booking(); // local object
-		// retrive all data from the text file and put in a arraylist
-		roomBooking.init();
 
-		String customerName;
-		String roomAvailability;
-		int roomNumber_list;
-		// iterate through the for loop to collect all relevant value to display
-		// in the table
-		for (int i = 0; i < roomBooking.getRoomList().size(); i++) {
-			customerName = roomBooking.getRoomList().get(i).getVisitorName();
-			
-			roomAvailability = roomBooking.getRoomList().get(i).getRoomStatus();
-			roomNumber_list = roomBooking.getRoomList().get(i).getRoonNumber();
-			// using the array objects to collect
-			Object[] objs = { roomNumber_list, roomAvailability, customerName };
-			// display every object in table
-			tableModel.addRow(objs);
-		}
+		/// Fill in HERE
+
+
 	}
 
 }
