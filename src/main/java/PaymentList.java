@@ -1,5 +1,5 @@
-/* Name: Mohammed Abdul Wahid
- * Email: ma301ma@gold.ac.uk
+/* Name: Abdul Wahid
+ * Email: abdulwahid211@gmail.com
  */
 
 import java.io.File;

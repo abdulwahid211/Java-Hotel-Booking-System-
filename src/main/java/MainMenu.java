@@ -66,7 +66,7 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 	// All components uses setBounds function to position place and change the
 	// height & weight
 	public MainMenu() throws FileNotFoundException {
-		super("Mohammed Abdul Wahid's PAP JAVA CW3");
+		super("Abdul Wahid's PAP JAVA CW3");
 
 
 

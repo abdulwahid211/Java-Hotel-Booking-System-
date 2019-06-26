@@ -1,30 +1,51 @@
-/* Name: Mohammed Abdul Wahid
- * Email: ma301ma@gold.ac.uk
+import javax.persistence.*;
+
+/* Name: Abdul Wahid
+ * Email: abdulwahid211@gmail.com
  */
-// a class for tenant object
+
+@Entity
+// table name
+@Table(name="Tennants")
 public class Tenant {
-	// protecting all my variables as private 
-private String title; // customers initial title 	
-private String firstName; // customers firstname 
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="ID")
+private int id;
+
+@Column(name="Title")
+private String title; // customers initial title
+
+@Column(name="FirstName")
+private String firstName; // customers firstname
+
+@Column(name="LastName")
 private String lastName; // lastname
-private String noAdultVisitors; //  No of Adult Visitors 
-private String noMiniorsVisitors; // No of Minor Visitors 
-private int noDaysBooked; // number days they have booked to stay 
-private int roomNumber;	// their room number 
+
+@Column(name="NoAdultVisitors")
+private String noAdultVisitors; //  No of Adult Visitors
+
+@Column(name="NoMiniorsVisitors")
+private String noMiniorsVisitors; // No of Minor Visitors
+
+
+	public Tenant(){};
 
 // constructor to pass in values 
 	public Tenant(String title,String firstN, String lastN, String adults,
-			String minors,int noDays, int rm){
+			String minors){
 		
 		this.title = title;
 		this.firstName = firstN;
 		this.lastName = lastN;
 		this.noAdultVisitors = adults;
 		this.noMiniorsVisitors = minors;
-		this.noDaysBooked = noDays;
-		this.roomNumber = rm;
 	}
-	// getter method for title 
+
+
+	public int getId() { return id;}
+	// getter method for title
 	public String getTitle(){
 		return this.title;
 	}
@@ -44,18 +65,36 @@ private int roomNumber;	// their room number
 	public String getNoMinorsVisitors(){
 		return this.noMiniorsVisitors;
 	}
-	// getter method for no days booked 
-	public int getNoDaysBooked(){
-		return this.noDaysBooked;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	// getter method for room number 
-	public int getRoomNumber(){
-		return this.roomNumber;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	/// string method so its prints the object content 
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setNoAdultVisitors(String noAdultVisitors) {
+		this.noAdultVisitors = noAdultVisitors;
+	}
+
+	public void setNoMiniorsVisitors(String noMiniorsVisitors) {
+		this.noMiniorsVisitors = noMiniorsVisitors;
+	}
+
+	/// string method so its prints the object content
 	public String toString(){
 		return"> Title:"+this.title +" Name:" + this.firstName +" "+
-	this.lastName+", Room Number:"+String.valueOf(this.roomNumber);
+	this.lastName;
 	}
 	
 	

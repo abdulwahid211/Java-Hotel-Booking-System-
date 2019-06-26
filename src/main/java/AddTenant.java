@@ -1,5 +1,5 @@
-/* Name: Mohammed Abdul Wahid
- * Email: ma301ma@gold.ac.uk
+/* Name: Abdul Wahid
+ * Email: abdulwahid211@gmail.com
  * 
  * Add tenant class  adds a customer details and stores it inside text files. The object also  checks for
  * validation to prevents wrong user input. 
