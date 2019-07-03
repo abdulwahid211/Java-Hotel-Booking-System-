@@ -1,4 +1,4 @@
-/* Name: Abdul Wahid
+package model;/* Name: Abdul Wahid
  * Email: abdulwahid211@gmail.com
  */
 import javax.persistence.*;
@@ -35,18 +35,17 @@ private java.time.LocalDateTime checkIn;
 private java.time.LocalDateTime checkOut;
 
 
+public Booking(){};
+
 // constructor to create a room object
 // inside the constructor you pass in room number, visitor name and boolean value if the room
 // is available or not 
 public Booking(int tennantsId, int rn, String _checkout ){
 	this.roomNumber = rn;
     this.tennantsId = tennantsId;
-	this.checkIn.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-	this.checkOut.parse(_checkout+"T00:00:00", formatter);
+	this.checkIn = this.checkIn.now();
+	this.checkOut = this.checkOut.parse(_checkout+" 00:00:00.0".replace( " " , "T" ));
 	this.roomStatus = "Not Available";
-	
-	
 	}
 
 

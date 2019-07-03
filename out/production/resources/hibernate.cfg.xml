@@ -22,6 +22,6 @@
 
 
         <!-- Names the annotated entity classes -->
-        <mapping class="Tenant" />
+        <mapping class="model.Tenant" />
     </session-factory>
 </hibernate-configuration>

@@ -253,19 +253,9 @@ public class MainMenu extends JFrame implements ActionListener,ItemListener {
 		}
 		// button to refresh page in add tenants page
 		if (e.getSource() == addTenantButton.getRefresh()) {
-			try {
 				addTenantButton.displayRoomTable();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setSize(550, 730); // set size for the Add tenants page
-		}
-		// button for calculate tenant payments
-		if (e.getSource() == addTenantButton.getCaluclate()) {
-			addTenantButton.showPrice();
-			setSize(550, 730); // set size for the Add tenants page
 
+			setSize(550, 730); // set size for the Add tenants page
 		}
 		// listen for Jcombo button for title or No adults and minors
 		if (e.getSource() == addTenantButton.getTitle()
