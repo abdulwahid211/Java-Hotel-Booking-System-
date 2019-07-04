@@ -1,22 +1,19 @@
 /* Name: Abdul Wahid
  * Email: abdulwahid211@gmail.com
  */
+import data.DataTransaction;
+import model.Tenant;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-/*
- * This display all tenant details in JTable, the user can refresh table as well 
- * 
- * 
- * 
- */
 
 public class showAllTenants  {
 	private JScrollPane scrollBar; // scroll bar for the table
@@ -38,6 +35,8 @@ public class showAllTenants  {
 	public JButton getRefreshButton() {
 		return this.refresh;
 	}
+
+	private DataTransaction tennatsTransaction;
 
 	// return method of Jpanel to display interface layout in the main JFrane
 	// method has parameter to reference object for actual action listener
@@ -78,6 +77,10 @@ public class showAllTenants  {
 		scrollBar.setBounds(0, 0, 550, 300);
 		page.add(scrollBar);
 
+
+		tennatsTransaction = new DataTransaction(Tenant.class);
+		displayData();
+
 		return page;
 
 	}
@@ -93,7 +96,31 @@ public class showAllTenants  {
 	}
 
 	// refresh the table
-	public void refreshPage() throws FileNotFoundException {
+	public void displayData() {
+
+		removeTableContent(tableModel);
+
+		String customerName;
+		int roomNumber;
+
+		List<Object[]> rows = tennatsTransaction.getDataRows("select" +
+				" Bookings.roomNumber, Tennants.FirstName, Tennants.LastName from hotel_project.Bookings, hotel_project.Tennants " +
+				"where Bookings.TennantId = Tennants.ID;;");
+
+		// iterate through the for loop to collect all relevant value to display
+		// in the table
+		for (int i = 0; i < rows.size(); i++) {
+
+			roomNumber = (int) rows.get(i)[0];
+
+			customerName = rows.get(i)[1] +" "+rows.get(i)[2];
+
+			Object[] objs = { customerName, roomNumber };
+
+			tableModel.addRow(objs);
+		}
+
+
 
 
 	}

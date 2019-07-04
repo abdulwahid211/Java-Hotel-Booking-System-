@@ -3,7 +3,7 @@ package model;/* Name: Abdul Wahid
  */
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 // table name
@@ -46,6 +46,7 @@ public Booking(int tennantsId, int rn, String _checkout ){
 	this.checkIn = this.checkIn.now();
 	this.checkOut = this.checkOut.parse(_checkout+" 00:00:00.0".replace( " " , "T" ));
 	this.roomStatus = "Not Available";
+	this.noDaysBooked = this.calculateNoDaysBooked();
 	}
 
 
@@ -63,6 +64,12 @@ public Booking(int tennantsId, int rn, String _checkout ){
 
 	public String getRoomStatus() {
 		return roomStatus;
+	}
+
+	public int calculateNoDaysBooked() {
+
+	return  (int)ChronoUnit.DAYS.between(this.checkIn, this.checkOut);
+
 	}
 
 	public int getNoDaysBooked() {

@@ -23,5 +23,7 @@
 
         <!-- Names the annotated entity classes -->
         <mapping class="model.Tenant" />
+        <mapping class="model.Booking" />
+        <mapping class="model.Payment" />
     </session-factory>
 </hibernate-configuration>

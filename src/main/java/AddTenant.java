@@ -1,12 +1,12 @@
 /*
    Name: Abdul Wahid
  * Email: abdulwahid211@gmail.com
- *
- *
  */
 
 
+import data.DataTransaction;
 import model.Booking;
+import model.Payment;
 import model.Tenant;
 
 import java.awt.Color;
@@ -40,7 +40,6 @@ public class AddTenant {
     // book
     private JButton Addtenants; // button for adding, and storing all data in
     // the text files
-    private JButton Calculate; // button to make rough calculation
     private JButton refresh; // button to refresh table
     private JTextArea CheckOutData;
     private JScrollPane scrollBar; // scroll bar for the table
@@ -76,10 +75,17 @@ public class AddTenant {
     // TableModel object to store the cell value of other objects.
     private DefaultTableModel tableModel;
     // file
-    private PaymentList payment; // to add payment details in text file
     Icon picture;
     JPanel page; // to display the interface layout
     private JButton goBack; // button to go back to previous page
+
+
+    private DataTransaction tennatsTransaction;
+    private DataTransaction bookingTransaction;
+    private DataTransaction paymentTransaction;
+
+
+
 
     // getter method for go back button
     public JButton getGoBackButton() {
@@ -106,26 +112,15 @@ public class AddTenant {
         return this.adults;
     }
 
-    // getter method for button to calculate the potential cost
-    public JButton getCaluclate() {
-        return this.Calculate;
-    }
-
     // getter method for add tenants
     public JButton getAddTenantsButton() {
         return this.Addtenants;
     }
 
 
-    private DataTransaction tennatsTransaction;
-
-    private DataTransaction bookingTransaction;
-
-
     public JPanel Container(Object o) throws FileNotFoundException {
         // instantiating all object in the method
         picture = new ImageIcon(getClass().getResource("/user.png"));
-        payment = new PaymentList();
 
         page = new JPanel(); // the interface container to add all JComponents
         // for my GUI
@@ -242,12 +237,14 @@ public class AddTenant {
 
         bookingTransaction = new DataTransaction(Booking.class);
 
+        paymentTransaction = new DataTransaction(Payment.class);
+
         // i decided to put all variables and object of Jtable
         // in a method, so it allows to re initialise the file handling, if any
         // updates happen
         // as i can call the method again when the staff member
         // presses the refresh button and add tenant
-        displayRoomTable();
+        displayData();
 
         page.add(table);
         // scroll bar for the room table
@@ -263,7 +260,7 @@ public class AddTenant {
     // file
     // this method get called when user presses the add tenant button
     // throw file handing exception, if file cannot be found
-    public void addTenants() throws FileNotFoundException {
+    public void addTenants() {
         // this is the function that removes old data in the table and then
         // updates the new one
         // so therefore it prevents duplicates in the table
@@ -297,10 +294,14 @@ public class AddTenant {
 
                     Booking newBooking = new Booking(tennantId, Integer.parseInt(roomNumber.getText()), CheckOutData.getText());
 
-                    bookingTransaction.add(newBooking);
+                    int bookingId = bookingTransaction.add(newBooking);
+
+                    Payment newPayment = new Payment(tennantId,bookingId,newBooking.getNoDaysBooked());
+
+                    paymentTransaction.add(newPayment);
 
 
-                    displayRoomTable(); // display new updated table again,
+                    displayData(); // display new updated table again,
 
                     // empty all JtextField
                     firstName.setText("");
@@ -363,7 +364,7 @@ public class AddTenant {
     }
 
     // method to display room table
-    public void displayRoomTable() {
+    public void displayData() {
 
         removeTableContent(tableModel);
 
@@ -371,7 +372,7 @@ public class AddTenant {
         String roomAvailability;
         int roomNumber;
 
-        List<Object[]> rows = bookingTransaction.fetchDataRows("select Bookings.roomNumber, Bookings.roomStatus, " +
+        List<Object[]> rows = bookingTransaction.getDataRows("select Bookings.roomNumber, Bookings.roomStatus, " +
                 "Tennants.FirstName from hotel_project.Bookings, hotel_project.Tennants where Bookings.TennantId = Tennants.ID;");
 
         // iterate through the for loop to collect all relevant value to display

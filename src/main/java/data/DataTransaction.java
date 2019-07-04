@@ -1,3 +1,6 @@
+package data;
+
+import model.Tenant;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -70,15 +73,15 @@ public class DataTransaction {
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Object> fetchAllObject() {
+    public static List<Tenant> getAllTenants() {
         // Open a session
         Session session = sessionFactory.openSession();
 
         // Create CriteriaQuery
-        CriteriaQuery<Object> criteria = session.getCriteriaBuilder().createQuery(Object.class);
-        criteria.from(Object.class);
+        CriteriaQuery<Tenant> criteria = session.getCriteriaBuilder().createQuery(Tenant.class);
+        criteria.from(Tenant.class);
 
-        List<Object> objects = session.createQuery(criteria).getResultList();
+        List<Tenant> objects = session.createQuery(criteria).getResultList();
 
         session.close();
 
@@ -86,7 +89,7 @@ public class DataTransaction {
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Object[]> fetchDataRows(String sql) {
+    public static List<Object[]> getDataRows(String sql) {
         // Open a session
         Session session = sessionFactory.openSession();
 
@@ -100,6 +103,21 @@ public class DataTransaction {
         session.close();
 
         return rows;
+    }
+
+    public static void setQuery(String sql) {
+        // Open a session
+        Session session = sessionFactory.openSession();
+
+        // Begin a transaction
+        session.beginTransaction();
+
+        NativeQuery query = session.createSQLQuery(sql);
+
+        query.executeUpdate();
+
+        session.close();
+
     }
 
 }
