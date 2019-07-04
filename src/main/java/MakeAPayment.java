@@ -83,7 +83,7 @@ public class MakeAPayment {
 		return this.other;
 	}
 
-	public JPanel Container(Object o) throws FileNotFoundException {
+	public JPanel Container(Object o)  {
 		// instantiate Jpanel
 		page = new JPanel();
 		page.setSize(550, 600);

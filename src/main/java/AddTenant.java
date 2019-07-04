@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 // this class contains all J swing components to run the Add tenants page 
 
 
-public class AddTenant {
+public class AddTenant implements util {
 
 
     private JTextField firstName; // first name of tennant to enter
@@ -118,7 +118,7 @@ public class AddTenant {
     }
 
 
-    public JPanel Container(Object o) throws FileNotFoundException {
+    public JPanel Container(Object o)  {
         // instantiating all object in the method
         picture = new ImageIcon(getClass().getResource("/user.png"));
 
@@ -348,19 +348,6 @@ public class AddTenant {
             }
         }
         return true; // if no words contain number then return true
-    }
-
-    // this is the function that removes old data in the table and then
-    // updates the new one
-    // deletes row from the table
-    // so therefore it prevents duplicates, as it gets updated when the user
-    // presses add tenant
-    // button or refresh button
-    public void removeTableContent(DefaultTableModel tableModel) {
-        // for loop to iterate, delete every row
-        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
-            tableModel.removeRow(i);
-        }
     }
 
     // method to display room table

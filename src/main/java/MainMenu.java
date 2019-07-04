@@ -48,7 +48,7 @@ public class MainMenu extends JFrame implements ActionListener, ItemListener {
     private Icon payList;
     private Icon tenList;
 
-    public MainMenu() throws FileNotFoundException {
+    public MainMenu(){
         super("Hotel MySQL Version");
 
 

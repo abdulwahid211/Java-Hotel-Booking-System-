@@ -16,22 +16,18 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
-public class showAllRooms extends JPanel {
+public class showAllRooms extends JPanel implements util {
 	private Booking roomBooking; // roomObjects that retrieves list of details
 	private JScrollPane scrollBar;// scroll bar for the table
 	private JButton refresh; // refresh button for the table
 
-	private String col[] = { "Room Number", "Room Status", "Visitor Name" };// column
-																			// names
+	private String col[] = { "Room Number", "Room Status", "Visitor Name" };// column // names
 																			// for
 	// the table
 	// TableModel object to store the cell value of other objects.
 	DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 
-
 	private JTable table;// table to display room availability
-
-
 
 	private JPanel page; // Jpanel for the layout
 	private JButton goBack; // button go back to main menu
@@ -51,7 +47,7 @@ public class showAllRooms extends JPanel {
 	// return method of Jpanel to display interface layout in the main JFrane
 	// method has parameter to reference object for actual action listener
 	// in the mainMenu class
-	public JPanel Container(Object o) throws FileNotFoundException {
+	public JPanel Container(Object o){
 		// instantiating room object
 		roomBooking = new Booking();
 		// instantiating Jpanel
@@ -86,11 +82,6 @@ public class showAllRooms extends JPanel {
 
 	}
 
-	public void removeTableContent(DefaultTableModel tableModel) {
-		for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
-			tableModel.removeRow(i);
-		}
-	}
 	// refresh the table
 	public void displayData() {
 

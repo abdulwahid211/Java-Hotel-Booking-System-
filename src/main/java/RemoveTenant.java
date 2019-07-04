@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-public class RemoveTenant {
+public class RemoveTenant implements util {
 
     private JButton goBack; // button to go back to main Menu
     private JButton refresh; // button to refresh the Jlist
@@ -45,7 +45,7 @@ public class RemoveTenant {
         return this.refresh;
     }
 
-    public JPanel Container(Object o) throws FileNotFoundException {
+    public JPanel Container(Object o)  {
         // instantiate Jpanel
         page = new JPanel();
         page.setSize(550, 600);

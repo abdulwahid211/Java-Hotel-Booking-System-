@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class showAllTenants  {
+public class showAllTenants implements util  {
 	private JScrollPane scrollBar; // scroll bar for the table
 	private JButton refresh; // refresh button for the table
 	private String col[] = { "TenantList Name", "Room number" }; // column names for
@@ -41,7 +41,7 @@ public class showAllTenants  {
 	// return method of Jpanel to display interface layout in the main JFrane
 	// method has parameter to reference object for actual action listener
 	// in the mainMenu class
-	public JPanel Container(Object o) throws FileNotFoundException {
+	public JPanel Container(Object o)  {
 		String customerName; // local variable customer name
 		int roomNumber; // local variable room number
 
@@ -85,15 +85,7 @@ public class showAllTenants  {
 
 	}
 
-	// this is the function that removes old data in the table and then
-	// updates the new one
-	// deletes row from the table
-	// so therefore it prevents duplicates,
-	public void removeTableContent(DefaultTableModel tableModel) {
-		for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
-			tableModel.removeRow(i);
-		}
-	}
+
 
 	// refresh the table
 	public void displayData() {
