@@ -109,6 +109,4 @@ public class Tenant {
         return "> Title:" + this.title + " Name:" + this.firstName + " " +
                 this.lastName;
     }
-
-
 }
