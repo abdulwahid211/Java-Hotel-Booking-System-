@@ -1,6 +1,6 @@
 # Swing App + Hibernate + MYSQL
 
-Wanted to take a challenge by improving one of the previous [University project](https://github.com/abdulwahid211/Java_Hotel_Booking_System), which is a desktop Swing Java application that stores data in a text file. The Swing Application was built for a hotel booking system which owners can book tenants, allocated to a room and take payments. However, this would not be ready for the real world because it affects data integrity and the data is not remotely available.   
+Wanted to take a challenge by improving one of the previous [University project](https://github.com/abdulwahid211/Java_Hotel_Booking_System), which is a desktop Swing Java application that stores data in a text file. The Swing Application was built for a hotel booking system which owners can book tenants, allocated to a room and take payments etc. However, this would not be ready for the real world because it affects data integrity and the data is not remotely available.   
 
 Hence, I wanted to take this opportunity to learn Java Hibernate and store the data in a relational database instead of text files. The whole source code has been refactored and tailored to work with MySQL database.  
 
