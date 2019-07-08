@@ -4,7 +4,7 @@ Wanted to take a challenge by improving one of the previous [University project]
 
 Hence, I wanted to take this opportunity to learn Java Hibernate and store the data in a relational database instead of text files. The whole source code has been refactored and tailored to work with MySQL database.  
 
-# Tools to improve this task  
+# Tools 
 * Using Hibernate Framework to map POJOS ( plain old java objects) to the relevant tables from RDBS 
 * MySQL Server - stores data remotely 
 
